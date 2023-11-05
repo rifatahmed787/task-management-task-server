@@ -6,7 +6,6 @@ export const create_task_zod_schema = z.object({
     deadline: z.string({ required_error: 'Deadline is required' }),
     description: z.string({ required_error: 'Description is required' }),
     cover_image: z.string().optional(),
-    done: z.boolean({ required_error: 'Status is required' }),
     keynotes: z.array(z.string()).optional(),
   }),
 })

@@ -13,8 +13,9 @@ const createTask = catchAsync(async (req: Request, res: Response) => {
   console.log(task_data)
   const user_data = req.logged_in_user
   task_data.added_by = user_data._id
-  console.log(user_data)
+  task_data.done = false
   const result = await TaskServices.create_new_task(task_data, user_data)
+  console.log(result)
 
   sendResponse(res, {
     status_code: httpStatus.OK,

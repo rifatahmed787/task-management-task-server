@@ -9,6 +9,7 @@ const TaskSchema = new Schema<ITask, TaskModel>({
   description: { type: String, required: true },
   cover_image: { type: String, required: false },
   keynotes: { type: [String], required: false },
+  done: { type: Boolean, required: true },
   added_by: { type: Schema.Types.ObjectId, required: true, ref: 'User' },
 })
 
