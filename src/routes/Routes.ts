@@ -16,12 +16,12 @@ const all_routes = [
   { path: '/upload', router: UploadRoute },
   { path: '/', router: UserRoute },
   { path: '/users', router: UserRoute },
-  { path: '/books', router: BookRoute },
-  { path: '/reviews', router: ReviewRoute },
-  { path: '/wish', router: WishRoute },
-  { path: '/reading', router: ReadingRoute },
-  { path: '/cart', router: CartRoute },
-  { path: '/blog', router: BlogRoute },
+  // { path: '/books', router: BookRoute },
+  // { path: '/reviews', router: ReviewRoute },
+  // { path: '/wish', router: WishRoute },
+  // { path: '/reading', router: ReadingRoute },
+  // { path: '/cart', router: CartRoute },
+  // { path: '/blog', router: BlogRoute },
 ]
 
 all_routes.map(item => router.use(item.path, item.router))
