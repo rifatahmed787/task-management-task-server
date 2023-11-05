@@ -139,18 +139,17 @@ const doneTask = async (
     )
   }
 
-  const updatedTask = await Task.findByIdAndUpdate(
-    task_id,
-    { done: true },
-    { new: true }
-  )
+  const task = await Task.findById(task_id)
 
-  if (!updatedTask) {
-    throw new ApiError(
-      httpStatus.EXPECTATION_FAILED,
-      'Failed to complete the task'
-    )
+  if (!task) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Task not found')
   }
+
+  // Toggle the 'done' status
+  task.done = !task.done
+
+  // Save the updated task
+  const updatedTask = await task.save()
 
   return updatedTask
 }

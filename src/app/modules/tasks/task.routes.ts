@@ -22,7 +22,7 @@ router.get('/', authHandler(), TaskController.allTasks)
 router.get('/unique-filter-items', TaskController.uniqueFilteringData)
 
 router.get('/:id', TaskController.taskDetails)
-router.patch('/:id', authHandler(), TaskController.doneTask)
+router.put('/:id', authHandler(), TaskController.doneTask)
 
 router.patch(
   '/:id',

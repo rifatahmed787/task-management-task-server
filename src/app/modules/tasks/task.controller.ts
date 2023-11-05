@@ -12,8 +12,8 @@ const createTask = catchAsync(async (req: Request, res: Response) => {
   const { ...task_data } = req.body
   console.log(task_data)
   const user_data = req.logged_in_user
-  task_data.added_by = user_data._id
-  task_data.done = false
+  task_data.added_by = user_data._id //set the task author using user _id
+  task_data.done = false //set the task status false by default
   const result = await TaskServices.create_new_task(task_data, user_data)
   console.log(result)
 

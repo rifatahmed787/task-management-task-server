@@ -1,18 +1,35 @@
 ### Introduction
 
-Welcome to the Book Catalog API documentation! This API serves as the backend system for the Book Catalog platform, where users can explore and discover various books across different genres and authors.
+Welcome to the task management API documentation! This API serves as the backend system for the task management platform, where users can explore and keep their daily task for a better experience.
 
 ## Features
 
-- Browse a vast collection of books.
-- Search for books based on titles, authors, or genres.
-- View detailed information about a specific book.
-- Add new books to the catalog.
-- Update existing book information.
-- Delete books from the catalog.
+- User authentication using JWT.
+- Signup and Sigin authentication.
+- Search for task based on titles.
+- View detailed information about a specific task.
+- Add new task to the management.
+- Update existing task information.
+- Delete task from the system.
+
+## Technologies
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT
+- bcrypt
+- cookie-parser
+
+## How to run
+
+- Clone the repository
+- Run "npm install" from installing all the dependencies
+- Run "yarn dev" for connect with mongodb server
 
 ## Base URL
 
 ```
- https://book-gallery-backend.vercel.app/api/v1/
+https://task-management-server-five-pi.vercel.app/api/v1/
 ```
