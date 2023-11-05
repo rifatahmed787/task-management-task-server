@@ -16,6 +16,7 @@ Welcome to the task management API documentation! This API serves as the backend
 
 - Node.js
 - Express.js
+- TypeScript
 - MongoDB
 - Mongoose
 - JWT
