@@ -47,7 +47,31 @@ const allTasks = catchAsync(async (req: Request, res: Response) => {
   const pagination = pick(req.query, pagination_keys)
   const user_data = req.logged_in_user
 
-  const result = await TaskServices.gel_all_tasks(filers, pagination, user_data)
+  const result = await TaskServices.gel_all_incomplete_tasks(
+    filers,
+    pagination,
+    user_data
+  )
+
+  sendResponse(res, {
+    status_code: httpStatus.OK,
+    success: true,
+    data: result,
+    message: 'Tasks retrieved successfully',
+  })
+})
+
+// get all complete task
+const getCompleteTask = catchAsync(async (req: Request, res: Response) => {
+  const filers = pick(req.query, task_filter_keys)
+  const pagination = pick(req.query, pagination_keys)
+  const user_data = req.logged_in_user
+
+  const result = await TaskServices.get_all_complete_tasks(
+    filers,
+    pagination,
+    user_data
+  )
 
   sendResponse(res, {
     status_code: httpStatus.OK,
@@ -118,4 +142,5 @@ export const TaskController = {
   allTasks,
   uniqueFilteringData,
   doneTask,
+  getCompleteTask,
 }

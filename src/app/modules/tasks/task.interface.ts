@@ -5,9 +5,9 @@ export type ITask = {
   title: string
   deadline: string
   description: string
-  cover_image: string
+  cover_image?: string
   done: boolean
-  keynotes: string[]
+  keynotes?: string[]
   added_by: Types.ObjectId | IUser
 }
 

@@ -18,6 +18,7 @@ router.post(
 )
 
 router.get('/', authHandler(), TaskController.allTasks)
+router.get('/complete', authHandler(), TaskController.getCompleteTask)
 
 router.get('/unique-filter-items', TaskController.uniqueFilteringData)
 

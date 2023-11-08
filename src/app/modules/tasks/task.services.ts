@@ -34,8 +34,8 @@ const create_new_task = async (
   return created_task
 }
 
-//  gel_all_tasks
-const gel_all_tasks = async (
+//  gel_all_imcomplete_tasks
+const gel_all_incomplete_tasks = async (
   filers: ITaskFilter,
   pagination_data: Partial<IPagination>,
   user_data: JwtPayload
@@ -48,6 +48,43 @@ const gel_all_tasks = async (
 
     // Filter tasks added by the user
     added_by: user_data._id,
+    done: false,
+  }
+
+  // Count only the tasks added by the user
+  const total = await Task.countDocuments(IsConditions)
+
+  // Query the tasks with the same conditions
+  const all_tasks = await Task.find(IsConditions)
+    .sort(sortObject)
+    .skip(skip)
+    .limit(limit)
+
+  return {
+    meta: {
+      page: page,
+      limit: limit,
+      total: total, // Total tasks added by the user
+    },
+    data: all_tasks,
+  }
+}
+
+// get all complete tasks
+const get_all_complete_tasks = async (
+  filers: ITaskFilter,
+  pagination_data: Partial<IPagination>,
+  user_data: JwtPayload
+): Promise<GenericResponse<ITask[]> | null> => {
+  const { page, limit, skip, sortObject } = pagination_map(pagination_data)
+
+  // Define the conditions to filter tasks based on filers and the user's ID
+  const IsConditions = {
+    ...filter_task_conditions(filers),
+
+    // Filter tasks added by the user
+    added_by: user_data._id,
+    done: true,
   }
 
   // Count only the tasks added by the user
@@ -125,7 +162,7 @@ const update_task = async (
   return updated_task_data
 }
 
-// done task
+// make complete the task
 const doneTask = async (
   task_id: string | Types.ObjectId,
   owner_id: Types.ObjectId
@@ -181,9 +218,10 @@ const delete_task = async (
 export const TaskServices = {
   create_new_task,
   update_task,
-  gel_all_tasks,
+  gel_all_incomplete_tasks,
   get_task_details,
   delete_task,
   get__unique_filtering_items,
   doneTask,
+  get_all_complete_tasks,
 }
